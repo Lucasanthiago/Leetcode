@@ -4,43 +4,50 @@ from time import process_time
 class Solution:
     def mySqrt(self, x: int) -> int:
 
-        # array = []
-        # aux = 2
-        # raiz = 1
+
+        # maneira fudida que eu fiz
+        # elevado = 1
         #
-        # while x > 1:
-        #     if x % aux == 0:
-        #         x = x / aux
-        #         array.append(aux)
+        # if x == 0:
+        #     return 0
+        #
+        # for i in range(x):
+        #
+        #     if elevado * elevado == x:
+        #         return elevado
+        #     if elevado * elevado < x and (elevado + 1) * (elevado + 1) > x:
+        #         return elevado
+        #
+        #     elevado += 1
+        #
+        # return elevado
+
+
+        # outra maneira idiota
+        #
+        # i = 0
+        #
+        # while True:
+        #     if i * i == x:
+        #         return i
+        #     if i * i > x:
+        #         return i-1
         #     else:
-        #         aux += 1
-        #
-        # if len(array) > 2:
-        #     for y in range(len(array)):
-        #         if len(array) > 1:
-        #             if array[y] == array[y+1]:
-        #                 raiz *= array[y]
-        #
-        #
-        #
-        # return array
-        # return raiz
+        #         i += 1
 
-        elevado = 1
+        l, r = 0, x
+        res = 0
 
-        if x == 0:
-            return 0
-
-        for i in range(x):
-
-            if elevado * elevado == x:
-                return elevado
-            if elevado * elevado < x and (elevado + 1) * (elevado + 1) > x:
-                return elevado
-
-            elevado += 1
-
-        return elevado
+        while l <= r:
+            m = l + ((r-l) // 2)
+            if m*m > x:
+                r = m -1
+            elif m*m < x:
+                l = m + 1
+                res = m
+            else:
+                return m
+        return res
 
 
 
